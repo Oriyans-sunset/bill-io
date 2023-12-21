@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "bill-io",
+    "slug": "bill-io",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
