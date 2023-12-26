@@ -1,21 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { useState } from "react";
+import MainContainer from "./src/navigation/MainContainer";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+import { RootSiblingParent } from "react-native-root-siblings";
+
+const fetchFonts = () => {
+  return Font.loadAsync({
+    handjet: require("./src/assets/fonts/Handjet-Bold.ttf"),
+  });
+};
 
 export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <RootSiblingParent>
+      <MainContainer></MainContainer>
+    </RootSiblingParent>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
