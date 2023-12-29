@@ -35,4 +35,17 @@ export default class ImageService {
       }
     });
   }
+
+  static async deleteRow(id) {
+    const db = await DatabaseService.openConnection();
+    return new Promise(async (resolve, reject) => {
+      try {
+        db.transaction((tx) => {
+          tx.executeSql("delete from items where id = ?", [id]);
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
 }

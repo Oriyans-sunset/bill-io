@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "react-native-paper";
+import { IconButton, Button, Text } from "react-native-paper";
 import { colours } from "../assets/colours";
 
-const CustomButton = ({ onPress, icon, label, colour }) => (
+const CustomButton = ({ onPress, icon, label, colour, iconColour }) => (
   <Button
     icon={icon}
     mode="contained"
@@ -12,19 +12,20 @@ const CustomButton = ({ onPress, icon, label, colour }) => (
       paddingVertical: 5,
       borderRadius: 30,
       elevation: 4, // Add elevation for shadow
-      shadowColor: colours.black, // Customize shadow color if needed
       shadowOffset: { width: 1, height: 3 }, // Customize shadow offset if needed
       shadowOpacity: 0.5, // Customize shadow opacity if needed
       shadowRadius: 4, // Customize shadow radius if needed
     }}
-    labelStyle={{
-      color: colours.white,
-      fontSize: 18,
-      fontFamily: "handjet",
-      fontWeight: "bold",
-    }}
   >
-    {label}
+    <Text
+      style={{
+        fontFamily: "handjet",
+        fontSize: 21,
+        color: colours.white,
+      }}
+    >
+      {label}
+    </Text>
   </Button>
 );
 

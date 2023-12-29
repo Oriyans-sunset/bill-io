@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, Text, StyleSheet, Linking, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Linking,
+  Image,
+  StatusBar,
+} from "react-native";
 import { Button, IconButton } from "react-native-paper";
 import { colours } from "../../assets/colours";
 import { Camera, useCameraDevice } from "react-native-vision-camera";

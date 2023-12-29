@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation }) {
           style={{ position: "absolute", top: 10, right: 10 }}
           icon="file-multiple"
           mode="contained"
-          iconColor={colours.lightBlue}
+          iconColor={colours.seaYellow}
           containerColor="transparent"
           size={18}
           onPress={() => {
@@ -37,8 +37,9 @@ export default function HomeScreen({ navigation }) {
         ></IconButton>
         <Image
           source={require("../../assets/images/bill-io-logo.png")}
+          tintColor={colours.seaYellow}
           resizeMode="contain"
-          style={{ marginBottom: -20 }}
+          style={{ marginBottom: -30 }}
         ></Image>
         <Title title="Bill.io"></Title>
 
@@ -47,6 +48,7 @@ export default function HomeScreen({ navigation }) {
           colour={colours.black}
           label="Add a bill"
           icon="camera"
+          iconColour={colours.lightBlue}
         ></CustomButton>
       </BlurView>
     </LinearGradient>

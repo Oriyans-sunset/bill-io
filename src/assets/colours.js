@@ -9,6 +9,8 @@ export const colours = {
   seaWhite: "#fffde4",
   success: "#00a86b",
   warning: "#d23232",
+  seaYellow: "#fcf8bd",
+  linearGradient2: ["rgba(0, 0, 0, 0.01)", "rgba(0, 0, 0, 0.1)"],
 };
 
 // ["#0099f7", "#f11712"] superman https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2021/06/24.-Superman.png?q=50&fit=crop&w=1500&dpr=1.5
