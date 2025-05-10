@@ -28,7 +28,6 @@ export default function HomeScreen({ navigation }) {
 
   useEffect(() => {
     //get all rows from db
-    console.log("use effect called");
     getAllData();
   }, [isFocused]);
 
@@ -36,7 +35,6 @@ export default function HomeScreen({ navigation }) {
     await new Promise((resolve) => setTimeout(resolve, 500));
     const rows = await ImageService.getAllRows();
     setBills(rows._array);
-    //console.log(rows);
   };
 
   return (
@@ -77,14 +75,20 @@ export default function HomeScreen({ navigation }) {
         <Appbar.Action
           icon="note-check"
           size={27}
-          iconColor={colours.white}
+          iconColor={colours.success}
           onPress={() => navigation.navigate("SavedBill")}
         />
         <Appbar.Action
           icon="camera"
           size={27}
-          iconColor={colours.white}
+          iconColor={colours.seaYellow}
           onPress={() => navigation.navigate("Camera")}
+        />
+        <Appbar.Action
+          icon="cog"
+          size={27}
+          iconColor={colours.white}
+          onPress={() => navigation.navigate("Privacy")}
         />
       </Appbar.Header>
 

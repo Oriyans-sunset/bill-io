@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Linking,
   Image,
-  StatusBar,
+  ActivityIndicator,
 } from "react-native";
 import { Button, IconButton } from "react-native-paper";
 import { colours } from "../../assets/colours";
@@ -17,6 +17,7 @@ export default function CameraScreen({ navigation }) {
   const cameraDevice = useRef(null);
   const device = useCameraDevice("back");
   const [hasPermission, setHasPermission] = useState(false);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     //check for permission
@@ -78,7 +79,7 @@ export default function CameraScreen({ navigation }) {
             mode="contained-tonal"
             buttonColor={colours.lightBlue}
             onPress={() => {
-              openSettings();
+              Linking.openSettings();
             }}
           >
             Open Settings
@@ -86,13 +87,17 @@ export default function CameraScreen({ navigation }) {
         </View>
       ) : (
         <View style={styles.container}>
-          <Camera
-            style={styles.camera}
-            device={device}
-            ref={cameraDevice}
-            isActive={true}
-            photo={true}
-          />
+          {device ? (
+            <Camera
+              style={styles.camera}
+              device={device}
+              ref={cameraDevice}
+              isActive={isFocused}
+              photo={true}
+            />
+          ) : (
+            <ActivityIndicator style={{ flex: 1 }} size="large" />
+          )}
           <IconButton
             style={{
               alignSelf: "center",

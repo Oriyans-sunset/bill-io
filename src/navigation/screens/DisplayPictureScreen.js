@@ -34,12 +34,16 @@ export default function DisplayPictureScreen({ route, navigation }) {
               label="Retake"
               icon="restart"
               colour={colours.seaBlue}
+              textColour={colours.white}
+              iconSize={25}
               onPress={() => navigation.goBack()}
             ></CustomButton>
             <CustomButton
               label="Confirm"
               icon="check"
               colour={colours.black}
+              iconSize={25}
+              textColour={colours.white}
               onPress={handleBillPictureConfirm}
             ></CustomButton>
           </View>

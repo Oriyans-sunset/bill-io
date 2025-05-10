@@ -9,6 +9,7 @@ import BillScreen from "./screens/BillScreen";
 import CameraScreen from "./screens/CameraScreen";
 import DisplayPictureScreen from "./screens/DisplayPictureScreen";
 import SavedBillScreen from "./screens/SavedBillScreen";
+import PrivacyScreen from "./screens/PrivacyScreen";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,11 @@ export default function MainContainer() {
           options={{ headerShown: false }}
           name="SavedBill"
           component={SavedBillScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Privacy"
+          component={PrivacyScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

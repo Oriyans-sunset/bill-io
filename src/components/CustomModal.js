@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   Portal,
@@ -14,21 +14,47 @@ const CustomModal = ({ visible, imageUri, navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(visible);
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [amountError, setAmountError] = useState("");
+
+  useEffect(() => {
+    setIsModalVisible(visible);
+  }, [visible]);
 
   const closeModal = () => {
     setIsModalVisible(false);
   };
 
   function addToDatabase() {
-    let amountF;
-    if (amount !== "") {
-      amountF = parseFloat(amount);
+    let hasError = false;
+
+    // Reset errors
+    setTitleError("");
+    setAmountError("");
+
+    if (title.trim() === "") {
+      setTitleError("Title cannot be empty");
+      hasError = true;
     }
 
-    //save picture to db
-    ImageService.saveToDatabase(imageUri, title, amountF);
+    const parsedAmount = parseFloat(amount);
+    if (amount.trim() === "") {
+      setAmountError("Amount cannot be empty");
+      hasError = true;
+    } else if (isNaN(parsedAmount)) {
+      setAmountError("Amount must be a number");
+      hasError = true;
+    } else if (parsedAmount < 0) {
+      setAmountError("Amount must be positive");
+      hasError = true;
+    }
 
-    //close modal
+    if (hasError) return;
+
+    // Save picture to DB
+    ImageService.saveToDatabase(imageUri, title, parsedAmount);
+
+    // Close modal and navigate
     closeModal();
     navigation.navigate("Bill");
   }
@@ -39,12 +65,12 @@ const CustomModal = ({ visible, imageUri, navigation }) => {
         <Modal
           visible={isModalVisible}
           contentContainerStyle={{
-            backgroundColor: "rgba(255, 255, 255, 0.2)",
+            backgroundColor: colours.lightBlue,
             borderColor: colours.black,
-            borderWidth: 1,
+            borderWidth: 3,
             padding: 20,
             width: "80%",
-            height: 300,
+            height: 350,
             alignSelf: "center",
             borderRadius: 10,
             marginBottom: 100,
@@ -74,7 +100,12 @@ const CustomModal = ({ visible, imageUri, navigation }) => {
                 primary: colours.white,
               },
             }}
+            error={!!titleError}
           />
+          {titleError ? (
+            <Text style={{ color: "red", fontSize: 12 }}>{titleError}</Text>
+          ) : null}
+
           <TextInput
             mode="flat"
             label={
@@ -98,7 +129,11 @@ const CustomModal = ({ visible, imageUri, navigation }) => {
                 primary: colours.white,
               },
             }}
+            error={!!amountError}
           />
+          {amountError ? (
+            <Text style={{ color: "red", fontSize: 12 }}>{amountError}</Text>
+          ) : null}
 
           <Button
             onPress={addToDatabase}

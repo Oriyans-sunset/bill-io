@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation }) {
           style={{ position: "absolute", top: 10, right: 10 }}
           icon="file-multiple"
           mode="contained"
-          iconColor={colours.seaYellow}
+          iconColor={colours.black}
           containerColor="transparent"
           size={18}
           onPress={() => {
@@ -45,10 +45,11 @@ export default function HomeScreen({ navigation }) {
 
         <CustomButton
           onPress={navigateToCamera}
-          colour={colours.black}
+          colour={colours.seaYellow}
           label="Add a bill"
           icon="camera"
-          iconColour={colours.lightBlue}
+          iconSize={23}
+          textColour={colours.black}
         ></CustomButton>
       </BlurView>
     </LinearGradient>
